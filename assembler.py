@@ -37,7 +37,6 @@ class Y86Assembler:
             self.address += 2
 
     def assemble(self, lines):
-        # First pass: Resolve labels
         for line in lines:
             line = line.strip()
             if ':' in line:
@@ -47,9 +46,8 @@ class Y86Assembler:
             if line.startswith('.'):
                 self.parse_directive(line)
             elif line:
-                self.address += 1  # Simplified; real encoding varies
+                self.address += 1  
         
-        # Second pass: Translate instructions
         self.address = 0
         output = []
         for line in lines:
@@ -78,7 +76,7 @@ class Y86Assembler:
         
         return '\n'.join(output)
 
-# Example usage
+# Ex
 code = [
     '.pos 0x100',
     'start: irmovq $10, %rax',
